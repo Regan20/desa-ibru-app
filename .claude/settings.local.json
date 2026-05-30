@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan *)",
+      "Bash(ls \"C:\\\\laragon\\\\bin\\\\php\" 2>&1)",
+      "Read(//c/laragon/bin/php/**)"
+    ]
+  }
+}

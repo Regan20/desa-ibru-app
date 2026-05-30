@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\laragon\\\\www\\\\desa-ibru-app\\\\resources\\\\views\\\\partials\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\laragon\\\\www\\\\desa-ibru-app\\\\resources\\\\views\\\\admin\\\\kwitansi\")",
+      "PowerShell(& \"C:\\\\laragon\\\\bin\\\\php\\\\php-8.3.30-Win32-vs16-x64\\\\php.exe\" \"c:\\\\laragon\\\\www\\\\desa-ibru-app\\\\artisan\" optimize:clear 2>&1)"
+    ]
+  }
+}
