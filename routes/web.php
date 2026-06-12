@@ -105,9 +105,3 @@ Route::get('/seed-desa-sekali', function () {
     return 'Selesai. Data desa sudah diisi. HAPUS route ini sekarang.';
 });
 Route::get('/reset-demo-sekali', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
-        '--seed'  => true,
-        '--force' => true,
-    ]);
-    return 'Selesai. Database direset & data demo lengkap sudah dibuat. HAPUS route ini sekarang.';
-});
