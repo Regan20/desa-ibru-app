@@ -97,13 +97,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::put('/pengaturan/password', [AdminDashboard::class, 'updatePassword'])->name('pengaturan.password');
 });
 
-Route::get('/seed-desa-sekali', function () {
-    \Illuminate\Support\Facades\Artisan::call('db:seed', [
-        '--class' => 'DesaSeeder',
-        '--force' => true,
-    ]);
-    return 'Selesai. Data desa sudah diisi. HAPUS route ini sekarang.';
-});
+/*
+|--------------------------------------------------------------------------
+| SEMENTARA: bangun ulang database demo dari nol. HAPUS setelah dipakai.
+|--------------------------------------------------------------------------
+*/
 Route::get('/reset-demo-sekali', function () {
     try {
         \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true]);
@@ -119,7 +117,5 @@ Route::get('/reset-demo-sekali', function () {
     } catch (\Throwable $ex) {
         return response('<pre>GAGAL: ' . e($ex->getMessage())
              . "\n\n" . e($ex->getTraceAsString()) . '</pre>', 500);
-}
-    
-Route::get('/reset-demo-sekali', function () {
-    
+    }
+});
