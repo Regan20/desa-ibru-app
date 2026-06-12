@@ -96,3 +96,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/pengaturan', [AdminDashboard::class, 'pengaturan'])->name('pengaturan');
     Route::put('/pengaturan/password', [AdminDashboard::class, 'updatePassword'])->name('pengaturan.password');
 });
+
+Route::get('/seed-desa-sekali', function () {
+    \Illuminate\Support\Facades\Artisan::call('db:seed', [
+        '--class' => 'DesaSeeder',
+        '--force' => true,
+    ]);
+    return 'Selesai. Data desa sudah diisi. HAPUS route ini sekarang.';
+});
