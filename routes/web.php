@@ -105,3 +105,25 @@ Route::get('/seed-desa-sekali', function () {
     return 'Selesai. Data desa sudah diisi. HAPUS route ini sekarang.';
 });
 Route::get('/reset-demo-sekali', function () {
+
+Route::get('/reset-demo-sekali', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true]);
+        $mig = \Illuminate\Support\Facades\Artisan::output();
+
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+        $seed = \Illuminate\Support\Facades\Artisan::output();
+
+        $akun = \App\Models\User::count();
+        $tagihan = \App\Models\Tagihan::count();
+
+        return response('<h3>Hasil reset</h3>'
+            . '<b>Jumlah akun: ' . $akun . '</b> (seharusnya 2)<br>'
+            . '<b>Jumlah tagihan: ' . $tagihan . '</b> (seharusnya 4)<hr>'
+            . '<pre>MIGRATE:' . "\n" . e($mig) . "\n\nSEED:\n" . e($seed) . '</pre>'
+            . 'Kalau jumlah akun = 2, berhasil — sekarang HAPUS route ini.');
+    } catch (\Throwable $ex) {
+        return response('<h3>GAGAL — penyebabnya:</h3><pre>'
+            . e($ex->getMessage()) . "\n\n" . e($ex->getTraceAsString()) . '</pre>', 500);
+    }
+});
