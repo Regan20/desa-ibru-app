@@ -56,12 +56,27 @@ class AuthController extends Controller
 
         $desa = Desa::where('nama', $data['desa'])->firstOrFail();
 
+        // Username = no. meter. Kolom ini UNIQUE di tabel users, jadi kalau
+        // nomor meter sudah dipakai (sering terjadi saat banyak penguji
+        // mengetik contoh "12345678" yang sama) tambahkan akhiran kecil
+        // agar pendaftaran tidak gagal dengan error 500.
+        $username = $data['no_meter'];
+        while (User::where('username', $username)->exists()) {
+            $username = $data['no_meter'] . '-' . substr(uniqid(), -4);
+        }
+
+        // Email juga UNIQUE di tabel users. Kalau bentrok, kosongkan saja.
+        $email = $data['email'] ?? null;
+        if ($email && User::where('email', $email)->exists()) {
+            $email = null;
+        }
+
         // Buat akun login (username pakai no. meter / id pelanggan)
         $user = User::create([
             'name'     => $data['nama'],
-            'username' => $data['no_meter'],
+            'username' => $username,
             'role'     => 'user',
-            'email'    => $data['email'] ?? null,
+            'email'    => $email,
             'password' => Hash::make($data['password']),
         ]);
 
