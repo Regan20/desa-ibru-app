@@ -56,6 +56,21 @@ class TagihanController extends Controller
             'metode' => ['required', 'string'],
         ]);
 
+        // Cegah bayar tagihan yang sudah Lunas.
+        if ($tagihan->status === 'Lunas') {
+            return back()->withErrors(['metode' => 'Tagihan ini sudah lunas, tidak perlu dibayar lagi.']);
+        }
+
+        // Cegah pembayaran ganda: tolak kalau tagihan ini sudah punya
+        // pembayaran yang sedang menunggu atau sudah diverifikasi.
+        $sudahProses = Pembayaran::where('tagihan_id', $tagihan->id)
+            ->whereIn('status', ['Menunggu', 'Diverifikasi'])
+            ->exists();
+
+        if ($sudahProses) {
+            return back()->withErrors(['metode' => 'Pembayaran untuk tagihan ini sedang/sudah diproses.']);
+        }
+
         Pembayaran::create([
             'pelanggan_id' => $tagihan->pelanggan_id,
             'tagihan_id'   => $tagihan->id,
