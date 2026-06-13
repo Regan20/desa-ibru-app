@@ -71,3 +71,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/pengaturan', [AdminDashboard::class, 'pengaturan'])->name('pengaturan');
     Route::put('/pengaturan/password', [AdminDashboard::class, 'updatePassword'])->name('pengaturan.password');
 });
+
+Route::get('/buat-akun-demo', function () {
+    \Illuminate\Support\Facades\Artisan::call('db:seed', [
+        '--class' => \Database\Seeders\DemoAkunSeeder::class,
+        '--force' => true,
+    ]);
+    return 'Lima akun demo + admin siap. demo1..demo5 (password: demo12345), admin.bumdes/admin123. Hapus route ini.';
+});
