@@ -39,7 +39,7 @@ class DemoAkunSeeder extends Seeder
         );
 
         // 3) Lima akun pengguna, masing-masing dengan pelanggan + tagihannya sendiri.
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
             $username = 'demo' . $i;                 // demo1 .. demo5
             $noMeter  = (string) (100 + $i);         // 101 .. 105 (dipakai di "Cek Tagihan")
             $kode     = 'IBR-2024-10' . $i;          // ID pelanggan internal
