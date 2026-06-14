@@ -24,8 +24,8 @@
         @if($errors->any())
           <div style="background:var(--red-100);color:var(--red-700);padding:.6rem .8rem;border-radius:.5rem;font-size:.8rem;margin-bottom:.9rem">{{ $errors->first() }}</div>
         @endif
-        <div class="field" style="margin-bottom:.9rem"><label>Username</label><input name="username" id="login-user" value="{{ old('username', 'user123') }}"></div>
-        <div class="field" style="margin-bottom:.9rem"><label>Kata Sandi</label><input name="password" id="login-pass" type="password" value="password123"></div>
+        <div class="field" style="margin-bottom:.9rem"><label>Username</label><input name="username" id="login-user" value="{{ old('username', 'demo1') }}"></div>
+        <div class="field" style="margin-bottom:.9rem"><label>Kata Sandi</label><input name="password" id="login-pass" type="password" value="demo12345"></div>
         <button type="submit" class="btn btn-primary btn-block">➜ Masuk ke Dashboard</button>
         <p id="daftar-link" style="text-align:center;font-size:.85rem;color:var(--gray-500);margin-top:.9rem">Belum punya akun? <a style="color:var(--teal);font-weight:600;cursor:pointer" href="{{ route('register') }}">Daftar sekarang</a></p>
       </div>
@@ -34,7 +34,7 @@
     <div style="background:#fff;border-radius:.9rem;padding:1.1rem;box-shadow:var(--shadow);margin-top:1rem;font-size:.8rem">
       <b style="color:var(--green)">● Demo Login</b> — gunakan kredensial ini:
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:.5rem">
-        <div><div style="font-weight:700;color:var(--teal-700);margin-bottom:.25rem">👤 Pengguna</div><div class="row"><span>Username</span><b>user123</b></div><div class="row"><span>Password</span><b>password123</b></div></div>
+        <div><div style="font-weight:700;color:var(--teal-700);margin-bottom:.25rem">👤 Pengguna</div><div class="row"><span>Username</span><b>demo1</b></div><div class="row"><span>Password</span><b>demo12345</b></div></div>
         <div><div style="font-weight:700;color:var(--teal-700);margin-bottom:.25rem">🛡️ Admin</div><div class="row"><span>Username</span><b>admin.bumdes</b></div><div class="row"><span>Password</span><b>admin123</b></div></div>
       </div>
     </div>
